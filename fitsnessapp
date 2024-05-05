@@ -1,0 +1,281 @@
+print("******WELCOME TO RC FITNESS TRACKER AND GOAL SETTER******")
+a= input(" To know that are you fit and Diet plan press 1 or To track your todays exercise press 5:-")
+if a == '1':
+    print("Enter the following details")
+    name = input("Enter your name: ")
+    gender = input("Enter your gender (male/female): ")
+    age = int(input("Enter your age: "))
+    weight = float(input("Enter your weight (in kg): "))
+    height = float(input("Enter your height (in cm): "))
+    daily_steps = int(input("Enter your daily steps count: "))
+    workout_duration = int(input("Enter your workout duration in minutes: "))
+    sleep_duration = int(input("Enter your sleep duration in hours: "))
+    activities = input("Enter your activities: ")
+    speed = int(input("Enter the constant speed of running: "))
+    time=float(input("Enter the total time of running"))
+    calories_burned = speed*3.5*(weight/200)
+    total=calories_burned*time
+    print("result is:-")
+    print("\n")
+    print(f"{name} your total calories burned in a one min: {calories_burned}")
+    print(f"{name} your total calories burned are: {total}")
+    
+    
+    
+    class FitnessChallenge:
+        def __init__(self, name, gender, age, weight, height):
+            self.name = name
+            self.gender = gender
+            self.age = age
+            self.weight = weight
+            self.height = height
+        
+        def calculate_bmi(self):
+            return self.weight / ((self.height / 100) ** 2)
+        
+        def suggest_exercise(self):
+            bmi = self.calculate_bmi()
+            print(f"{name}  your bmi is {bmi}")
+            
+            if self.gender.lower() == 'male':
+                if bmi > 25:
+                    print("You are not so fit. Focus on cardio exercises like running and swimming.")
+                    print("And also Follow a diet with oatmeal, skimmed milk, mixed nuts, and vegetable salads.")
+                else:
+                    print("You can maintain your fitness with strength training and yoga.")
+                    print("Enrich your diet with protein shakes or supplements.")
+            elif self.gender.lower() == 'female':
+                if bmi > 24:
+                    print("Focus on aerobic exercises like walking, jogging, and skipping.")
+                    print("Include planks, push-ups, and squats in your workout routine.")
+                    print("Control oily and fast food intake for effective weight management.")
+                else:
+                    print("Incorporate cardio and strength training into your weekly routine.")
+                    print("Vary your exercises with HIIT workouts and fitness classes.")
+                    print("Take adequate rest and recovery days.")
+    user_challenge = FitnessChallenge(name, gender, age, weight, height)
+    user_challenge.suggest_exercise()
+
+elif a == '5':
+    class GoalSelector:
+        def __init__(self):
+            self.user_info = {}
+            self.goals = {
+                "1": "Burn Calories",
+                "2": "Exercises for Gaining Weight",
+                "3": "Exercises for Losing Weight",
+                "4": "Hydration",
+                "5": "Monitor Body Blood Pressure"
+            }
+
+            self.name = ""
+            self.gender = ""
+            self.age = 0
+            self.weight = 0.0
+            self.height = 0.0
+            self.bmi = 0.0
+        def get_user_info(self):
+            print("******WELCOME TO RC FITNESS TRACKER AND GOAL SETTER******")
+            self.name = input("Enter Your Name: ")
+            self.gender = input("Please enter your gender (male/female): ")
+            while self.gender.lower() not in ['male', 'female']:
+                self.gender = input("Invalid input. Please enter your gender as male or female only: ")
+            self.age = input("Enter Your Age: ")
+            self.weight = float(input("Enter your weight in kilograms: "))
+            self.height = float(input("Enter your height in centimeters: "))
+            # Calculate BMI
+            self.bmi = self.weight / (self.height * self.height) * 10000
+            # Display the BMI
+            print("Your BMI is:", self.bmi)
+            # Display the Fitness
+            print("****FITNESS****")
+            if self.bmi < 18.5:
+                print("You are UNDERWEIGHT")
+            elif 18.5 <= self.bmi < 25:
+                print("You are HEALTHY")
+            elif 25 <= self.bmi < 30:
+                print("You are OVERWEIGHT")
+            else:
+                print("You are Obese")
+        def display_goals(self):
+            print("Select a goal:")
+            for key, value in self.goals.items():
+                print(f"{key}: {value}")
+        def select_goal(self):
+            self.display_goals()
+            selected_goal = input("Enter the number of the goal you want to learn more about: ")
+            if selected_goal in self.goals.keys():
+                self.execute_goal(selected_goal)
+            else:
+                print("Invalid selection. Please choose a valid goal.")
+        def execute_goal(self, selected_goal):
+            if selected_goal == "1":
+                self.burn_calories()
+            elif selected_goal == "2":
+                self.gaining_weight_exercises()
+            elif selected_goal == "3":
+                self.losing_weight_exercises()
+            elif selected_goal == "4":
+                self.hydration_info()
+            elif selected_goal == "5":
+                self.monitor_bp()
+
+        def burn_calories(self):
+            while True:
+                print("To burn calories, consider exercises like")
+                print("1.Runing")
+                print("2.Swimmimg")
+                print("3.Cycling")
+                ch=int(input("Enter your choice"))
+                if ch==1:
+                    run=float(input("Kilometer's you have completed:"))
+                    burn_calories=run*60
+                    print(f"Calories burned: {burn_calories} calories")
+                    if burn_calories>=200 and burn_calories<=1000:
+                        print("Your are doing Very well")
+                    else:
+                        print("you need to burn more calories")
+
+                elif ch==2:
+                    swim=float(input("How much meter you swim:"))
+                    burn_calories=swim*64
+                    print(f"Calories burned: {burn_calories} calories")
+                    if burn_calories>=200 and burn_calories<=1000:
+                        print("Your are doing Very well")
+                    else:
+                        print("you need to burn more calories")
+
+                elif ch==3:
+                    cyc=float(input("How much meter you do cycling:"))
+                    burn_calories=cyc*23
+                    print(f"Calories burned: {burn_calories} calories")
+                    if burn_calories>=200 and burn_calories<=1000:
+                        print("Your are doing Very well")
+                    else:
+                        print("you need to burn more calories")
+
+                else:
+                    print("Invalid Choice")
+
+
+                cont = input("Do you want to continue? (yes/no): ")
+                if cont.lower() != 'yes':
+                    break
+
+        def gaining_weight_exercises(self):
+            while True:     
+                print("To gain weight, focus on strength training exercises such as ")
+                print("1.Weightlifting")
+                print("2.Squats")
+                print("3.Deadlifts")
+                ch=int(input("Enter your choice"))
+                if ch==1:
+                    wl=float(input("How much time you do Weightlifting(min):"))
+                    if wl>=10 and wl<=30:
+                        print("Your are doing Very well")
+                    else:
+                        print("you need to do more Weightlifting")
+
+                elif ch==2:
+                    sqt=float(input("How much time you do Squats(min):"))
+                    if sqt>=10 and sqt<=30:
+                        print("Your are doing Very well")
+                    else:
+                        print("you need to do more Squats")
+
+                elif ch==3:
+                    deadl=float(input("How much time you do Deadlifts(min):"))
+                    if deadl>=5 and deadl<=30:
+                        print("Your are doing Very well")
+                    else:
+                        print("you need to do more Deadlifting")
+
+                else:
+                    print("Invalid Choice")
+                
+                cont = input("Do you want to continue? (yes/no): ")
+                if cont.lower() != 'yes':
+                    break
+
+        def losing_weight_exercises(self):
+            while True:     
+                print("For losing weight, include cardio exercises like")
+                print("1.Runing")
+                print("2.Swimmimg")
+                print("3.Cycling")
+                ch=int(input("Enter your choice"))
+                if ch==1:
+                    run=float(input("How much Kilometer you run:"))
+                    losing_weight_exercises=run*60
+                    print(f"Calories burned: {losing_weight_exercises} calories")
+                    if losing_weight_exercises>=200 and losing_weight_exercises<=1000:
+                        print("Your are doing Very well")
+                    else:
+                        print("you need to burn more calories")
+
+                elif ch==2:
+                    swim=float(input("How much meter you swim:"))
+                    losing_weight_exercises=swim*64
+                    print(f"Calories burned: {losing_weight_exercises} calories")
+                    if losing_weight_exercises>=200 and losing_weight_exercises<=1000:
+                        print("Your are doing Very well")
+                    else:
+                        print("you need to burn more calories")
+
+                elif ch==3:
+                    cyc=float(input("How much meter you swim:"))
+                    losing_weight_exercises=cyc*23
+                    print(f"Calories burned: {losing_weight_exercises} calories")
+                    if losing_weight_exercises>=200 and losing_weight_exercises<=1000:
+                        print("Your are doing Very well")
+                    else:
+                        print("you need to burn more calories")
+
+                else:
+                    print("Invalid Choice")
+
+                cont = input("Do you want to continue? (yes/no): ")
+                if cont.lower() != 'yes':
+                    break
+        def hydration_info(self):
+            while True:
+                print("Stay hydrated by drinking an adequate amount of water throughout the day.")
+                water=float(input("How much water you drink in a day(liters):"))
+                if water>=3:
+                    print("You are drinking an adequate amount of water throughout the day and doing well")
+                else:
+                    print("You are not drinking an adequate amount of water throughout the day")
+
+                cont = input("Do you want to continue? (yes/no): ")
+                if cont.lower() != 'yes':
+                    break
+        def monitor_bp(self):
+            while True:
+                print("To monitor your blood pressure, use a blood pressure monitor regularly. Normal blood pressure is typically around 120/80 mmHg. Consult a healthcare professional if you have concerns.")
+                bp=float(input("Enter your Blood Pressure(mmhg):"))
+                if bp>+80 and bp<=120:
+                    print("Your Blood Pressure is normal")
+                else:
+                    print("Your Blood Pressure is not normal")
+                    
+                cont = input("Do you want to continue? (yes/no): ")
+                if cont.lower() != 'yes':
+                     break
+                     
+
+
+    tracker = GoalSelector()
+
+
+    tracker.get_user_info()
+
+    user_data = {tracker.name, tracker.gender, tracker.age, tracker.weight, tracker.height, tracker.bmi}
+
+   
+    print("User Data:", user_data)
+
+   
+    tracker.select_goal()
+
+else:
+    print("Invalid input. Please try again.")
